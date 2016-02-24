@@ -24,7 +24,7 @@ for message in mbox:
     i += 1
 
 # Write CSV file
-f = open(mbox_name + "-analysis.csv", 'w')
+f = open("analysis-" + mbox_name + ".csv", 'w')
 for (k, v) in sorted(data.items()):
-    f.write(str(k) + "," + str(v))
+    print >> f, (str(k) + "," + str(v))
 f.close
