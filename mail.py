@@ -17,8 +17,9 @@ for message in mbox:
         dt = parser.parse(message['Date'])
     except ValueError:
         print("Error: Date not readable: " + message['Date'])
-    key = str(dt.year) + "-" + str(dt.month)
-    if (i % 200 == 0):
+    halfyear = (dt.month - 1) // 6 + 1
+    key = str(dt.year) + "-H" + str(halfyear)
+    if (i % 100 == 0):
         print("Reading mails in " + key)
     data[key] = data.setdefault(key, 0) + 1
     i += 1
@@ -28,3 +29,5 @@ f = open("analysis-" + mbox_name + ".csv", 'w')
 for (k, v) in sorted(data.items()):
     print >> f, (str(k) + "," + str(v))
 f.close
+
+# Write to terminal
